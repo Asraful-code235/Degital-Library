@@ -33,7 +33,7 @@ function Navbar() {
             placeholder="type to search"
           />
           <a href="#" className="search-btn">
-            <i className="fas fa-search"></i>
+            <i className="fa fa-search"></i>
           </a>
         </div>
         <div className="toggle">
