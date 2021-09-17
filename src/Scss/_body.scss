@@ -2,12 +2,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins',
-        sans-serif;
+
 
 }
 
 body {
-    width: 95%;
+    font-family: 'Poppins',
+        sans-serif;
+    width: 100%;
     margin: 0 auto;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
 }
