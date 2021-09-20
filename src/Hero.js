@@ -2,6 +2,7 @@ import React from "react";
 import "./css/main.css";
 import { categoryItem } from "./HeroLinks";
 import { categoryRight } from "./CategoryRight";
+import { isCompositeComponentWithType } from "react-dom/test-utils";
 
 function Hero() {
   return (
@@ -14,38 +15,35 @@ function Hero() {
               <Component2 />
             </div>
           </div>
-          <div className="col-right"></div>
+          <Compontnt3 />
         </div>
       </div>
     </section>
   );
 }
-
 const Component1 = () => {
-  const CategoryList = document.querySelector(".category-list");
-  const link = document.querySelectorAll(".link");
-  const displayList = () => {
-    link.forEach((link) => {
-      link.addEventListener("mouseover", (e) => {
-        CategoryList.classList.add("block");
-        link.classList.add("activate");
-
-        CategoryList.addEventListener("mouseover", () => {
-          CategoryList.classList.add("block");
-          // link.classList.add("activate");
-        });
-      });
-      link.addEventListener("mouseout", () => {
-        CategoryList.classList.remove("block");
-        link.classList.remove("activate");
-      });
-      CategoryList.addEventListener("mouseout", () => {
-        CategoryList.classList.remove("block");
-        link.classList.remove("activate");
-      });
+  const popup = document.querySelector(".category-list");
+  const linkActive = document.querySelector(".category-item");
+  const categoryRight = document.querySelector(".category-layout");
+  const hoverEffect = document.querySelector(".link");
+  const popHandler = () => {
+    popup.classList.add("block");
+    hoverEffect.classList.add("activate");
+    categoryRight.addEventListener("mouseover", () => {
+      hoverEffect.classList.add("activate");
+      linkActive.classList.add("Active");
+      popup.classList.add("block");
     });
   };
-  displayList();
+  const popOut = () => {
+    popup.classList.remove("block");
+    hoverEffect.classList.remove("activate");
+    categoryRight.addEventListener("mouseout", () => {
+      hoverEffect.classList.remove("activate");
+      linkActive.classList.remove("Active");
+      popup.classList.remove("block");
+    });
+  };
   return (
     <div className="category-left">
       <div className="left-title">
@@ -55,7 +53,12 @@ const Component1 = () => {
       <div className="left-market">
         {categoryItem.map((item) => {
           return (
-            <div key={item.id} className={item.class} onMouseOver={displayList}>
+            <div
+              key={item.id}
+              className="link"
+              onMouseOver={popHandler}
+              onMouseOut={popOut}
+            >
               <a href="#">
                 <div className={item.mainHandler}>
                   <div>
@@ -75,37 +78,10 @@ const Component1 = () => {
   );
 };
 const Component2 = () => {
-  const CategoryList = document.querySelector(".category-list");
-  const link = document.querySelectorAll(".link");
-  const displayList = () => {
-    link.forEach((link) => {
-      link.addEventListener("mouseover", (e) => {
-        CategoryList.classList.add("block");
-        link.classList.add("activate");
-        CategoryList.addEventListener("mouseover", () => {
-          CategoryList.classList.add("block");
-          categoryItem.map((prop) => {
-            return document.querySelector(".link").classList.add("activate");
-          });
-
-          // link.classList.add("activate");
-        });
-      });
-      link.addEventListener("mouseout", () => {
-        CategoryList.classList.remove("block");
-        link.classList.remove("activate");
-      });
-      CategoryList.addEventListener("mouseout", () => {
-        CategoryList.classList.remove("block");
-        link.classList.remove("activate");
-      });
-    });
-  };
-  displayList();
   return (
     <>
       <div className="category-right">
-        <div className="category-list" onMouseOver={displayList}>
+        <div className="category-list">
           {categoryRight.map((prop) => {
             return (
               <div key={prop.id} className={prop.closed}>
@@ -131,6 +107,23 @@ const Component2 = () => {
               </div>
             );
           })}
+        </div>
+      </div>
+    </>
+  );
+};
+const Compontnt3 = () => {
+  return (
+    <>
+      <div className="col-right">
+        <div className="slider">
+          <div className="slider active">
+            <img src="" alt="" />
+            <div className="info">
+              <h3></h3>
+              <p></p>
+            </div>
+          </div>
         </div>
       </div>
     </>
