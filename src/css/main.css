@@ -11,6 +11,7 @@ body {
   margin: 0 auto;
   letter-spacing: 1px;
   line-height: 1.5;
+  background: rgba(177, 222, 243, 0.25);
 }
 
 a {
@@ -27,9 +28,15 @@ li {
   text-align: center;
   align-items: center;
   padding: 0px 25px;
-  box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(54, 51, 51, 0.25);
+  background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .NavbarItems .menu-icon {
@@ -171,7 +178,7 @@ li {
 
 .NavbarItems .nav-menu a::after {
   position: absolute;
-  bottom: -20px;
+  bottom: -22px;
   left: 0%;
   right: 0%;
   margin: 0 auto;
@@ -267,7 +274,7 @@ li {
   background: #fff;
   align-items: center;
   position: relative;
-  height: 450px;
+  height: 420px;
   width: 90%;
   margin: 0 auto;
   border-radius: 10px;
@@ -298,6 +305,7 @@ li {
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 0;
   z-index: 99;
 }
 
@@ -516,7 +524,7 @@ img {
 
 .home-category .category-right .category-list {
   height: 100%;
-  margin-top: 30px;
+  margin-top: 10px;
   display: none;
   z-index: 10;
 }
@@ -547,5 +555,67 @@ img {
 
 .home-category .category-right .category-list .closed3.open {
   display: block;
+}
+
+.slider {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-right: 10px;
+  transition: 2s;
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+}
+
+.slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slider .slide .info {
+  position: absolute;
+  color: #222;
+  background: rgba(255, 255, 255, 0.555);
+  width: 75%;
+  margin-top: 50px;
+  margin-left: 50px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 25px rgba(37, 36, 36, 0.5);
+}
+
+.slider .slide .info h3 {
+  color: black;
+  letter-spacing: 2;
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.slider .slide .info p {
+  color: #d80a14;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.slider .slide .slideshow {
+  clip-path: circle(150% at 0 50%);
+  transition: 2s;
+}
+
+.slider .slide img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 /*# sourceMappingURL=main.css.map */

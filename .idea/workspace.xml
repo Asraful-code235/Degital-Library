@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="227b34ec-b3d3-4553-b8b5-b7978bfa057f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scss/_body.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scss/_body.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scss/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scss/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hero.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scss/_hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scss/_hero.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/main.css.map" afterDir="false" />
@@ -25,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/pythonProject/venv" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
