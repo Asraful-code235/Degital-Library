@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "./css/main.css";
-
-import { categoryItem } from "./HeroLinks";
+import { sliderInfo } from "./slider";
 import { categoryRight } from "./CategoryRight";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 function Hero() {
   return (
@@ -12,7 +13,6 @@ function Hero() {
           <div className="col-left">
             <div className="home-category">
               <Component1 />
-              <Component2 />
             </div>
           </div>
           <Component3 />
@@ -21,62 +21,74 @@ function Hero() {
     </section>
   );
 }
-const Component1 = () => {
-  // const popup = document.querySelector(".category-list");
-  // const linkActive = document.querySelector(".category-item");
-  // const categoryRight = document.querySelector(".category-layout");
-  // const hoverEffect = document.querySelector(".link");
-  // const popHandler = () => {
-  //   popup.classList.add("block");
-  //   hoverEffect.classList.add("activate");
-  //   categoryRight.addEventListener("mouseover", () => {
-  //     hoverEffect.classList.add("activate");
-  //     linkActive.classList.add("Active");
-  //     popup.classList.add("block");
-  //   });
-  // };
-  // const popOut = () => {
-  //   popup.classList.remove("block");
-  //   hoverEffect.classList.remove("activate");
-  //   categoryRight.addEventListener("mouseout", () => {
-  //     hoverEffect.classList.remove("activate");
-  //     linkActive.classList.remove("Active");
-  //     popup.classList.remove("block");
-  //   });
-  // };
-  return (
-    <div className="category-left">
-      <div className="left-title">
-        <a href="">My Library</a>
-      </div>
 
-      <div className="left-market">
-        {categoryItem.map((item) => {
-          return (
-            <div key={item.id} className="link">
-              <a href="#">
-                <div className={item.mainHandler}>
-                  <div>
-                    <span className="img">
-                      <img src={item.spanImg} alt="" />
-                    </span>
-                    <span className="txt">{item.txt}</span>
-                  </div>
-                  <i className="prefixed-icon"></i>
-                </div>
-              </a>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-const Component2 = () => {
+const Component1 = () => {
+  const [isBlock, setBlock] = useState(false);
+  const [isActive, setActive] = useState(false);
+  const [isHover, setHover] = useState(false);
   return (
     <>
+      <div className="category-left">
+        <div className="left-title">
+          <a href="">My Library</a>
+        </div>
+
+        <div className="left-market">
+          <div
+            id="FirstUnique"
+            className={`link ${isActive ? "activate" : ""}`}
+            onMouseEnter={() => {
+              const l = document.getElementById("FirstUnique");
+              const v = document.getElementById("Unique");
+              const c = document.getElementById("thirdUnique");
+              l.addEventListener("mouseover", () => {
+                v.classList.add("block");
+                l.classList.add("activate");
+              });
+              v.classList.remove("block");
+            }}
+            onMouseLeave={() => {
+              const l = document.getElementById("FirstUnique");
+              const v = document.getElementById("Unique");
+              const c = document.getElementById("thirdUnique");
+              l.addEventListener("mouseout", () => {
+                v.classList.remove("block");
+                l.classList.remove("activate");
+                v.addEventListener("mouseover", () => {
+                  v.classList.add("block");
+                  l.classList.add("activate");
+                  c.classList.add("Active");
+                });
+                v.addEventListener("mouseout", () => {
+                  v.classList.remove("block");
+                  l.classList.remove("activate");
+                  c.classList.remove("Active");
+                });
+              });
+            }}
+          >
+            <a href="#">
+              <div
+                id="thirdUnique"
+                className={`category-item ${isHover ? "Active" : ""}`}
+              >
+                <div>
+                  <span className="img">
+                    <img
+                      src="https://sc02.alicdn.com/kf/HTB12RuNUmzqK1RjSZFH7623CpXa6.png_50x50xz.jpg"
+                      alt=""
+                    />
+                  </span>
+                  <span className="txt">Department</span>
+                </div>
+                <i className="prefixed-icon"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
       <div className="category-right">
-        <div className="category-list">
+        <div id="Unique" className={`category-list ${isBlock ? "block" : " "}`}>
           {categoryRight.map((prop) => {
             return (
               <div key={prop.id} className={prop.closed}>
@@ -108,58 +120,45 @@ const Component2 = () => {
   );
 };
 const Component3 = () => {
-  // const slider = document.querySelector(".slider");
-  // const slides = document.getElementsByClassName("slide");
-  // const NumOfSlide = slides.length;
-  // var currentPosition = 0;
-
-  // var playSlider;
-  // var repeater = () => {
-  //   playSlider = setInterval(() => {
-  //     slides.forEach((slides) => {
-  //       slides.classList.remove("slideshow");
-  //     });
-  //     currentPosition++;
-  //     if (currentPosition > NumOfSlide - 1) {
-  //       currentPosition = 0;
-  //     }
-  //     slides[currentPosition].classList.add("slideshow");
-  //   }, 3000);
-  // };
-  // repeater();
-
+  // const [id, img, h3, p] = sliderInfo;
   return (
     <>
       <div className="col-right">
+        {/* <div className="slider" id="slider">
+          {sliderInfo.map((slides) => {
+            <div key={slides.id} className={slides.cName}>
+              <img src={slides.img} alt="" />
+              <div className="info">
+                <h3>{slides.h3}</h3>
+                <p>{slides.p}</p>
+              </div>
+            </div>;
+          })}
+        </div> */}
         <div className="slider">
-          <div className="slide">
-            <img src="./1.jpg" alt="" />
-            <div className="info">
-              <h3>Getting Books Made Easy</h3>
-              <p>Get your favourite book with just a click of a button</p>
-            </div>
-          </div>
-          <div className="slide active">
-            <img src="./differentbooks.jpg" alt="" />
-            <div className="info">
-              <h3>Getting Books Made Easy</h3>
-              <p>Get your favourite book with just a click of a button</p>
-            </div>
-          </div>
-          <div className="slide active">
-            <img src="./Personreading.jpg" alt="" />
-            <div className="info">
-              <h3>Getting Books Made Easy</h3>
-              <p>Get your favourite book with just a click of a button</p>
-            </div>
-          </div>
-          <div className="slide active">
-            <img src="./py.jpg" alt="" />
-            <div className="info">
-              <h3>Getting Books Made Easy</h3>
-              <p>Get your favourite book with just a click of a button</p>
-            </div>
-          </div>
+          <Splide
+            options={{
+              type: "loop",
+              gap: "1.2rem",
+              autoplay: true,
+              pauseOnHover: false,
+              resetProgress: false,
+              arrows: "slider",
+            }}
+            hasSliderWrapper
+            hasAutoplayControls
+            hasAutoplayProgress
+          >
+            {sliderInfo.map((slide) => (
+              <SplideSlide key={slide.img} className="slide">
+                <img src={slide.img} alt="" />
+                <div className="info">
+                  <h3>{slide.h3}</h3>
+                  <p>{slide.p}</p>
+                </div>
+              </SplideSlide>
+            ))}
+          </Splide>
         </div>
       </div>
     </>

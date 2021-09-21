@@ -25,7 +25,9 @@
         -o-border-radius: 10px;
 
         .col-left {
+            // border: 2px solid red;
             height: 100%;
+            // width: 50%;
             position: absolute;
             top: 0;
             left: 0;
@@ -44,7 +46,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            bottom: 0;
+
             z-index: 99;
         }
     }
@@ -170,6 +172,7 @@
                 content: "";
                 right: -4px;
                 top: 0;
+                pointer-events: none;
             }
         }
     }
@@ -316,41 +319,36 @@ img {
 }
 
 .slider {
-    // border: 2px solid blue;
     position: relative;
     background: transparent;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    margin-right: 10px;
-    transition: 2s;
-    -webkit-transition: 2s;
-    -moz-transition: 2s;
-    -ms-transition: 2s;
-    -o-transition: 2s;
-    // border-right: 1px solid rgba(0, 0, 0, 0.05);
-
-
+    //overflow: hidden;
+    animation: clipPath 4s infinite;
+    //border-right: 1px solid rgba(0, 0, 0, 0.05);
+    -webkit-animation: clipPath 4s infinite;
 }
 
 .slider .slide {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 388px;
+    margin-right: 10px;
+    overflow: hidden;
+    margin-left: -12px;
+    // animation: clipPath 4s infinite;
+    // //border-right: 1px solid rgba(0, 0, 0, 0.05);
+    // -webkit-animation: clipPath 4s infinite;
     // clip-path: circle(0% at 0 50%);
 
 
     .info {
         // border: 2px solid red;
         position: absolute;
+        top: 0%;
+        left: 0%;
         color: #222;
         background: rgba(255, 255, 255, 0.555);
-        width: 75%;
         margin-top: 50px;
         margin-left: 50px;
         padding: 20px;
@@ -372,16 +370,103 @@ img {
             font-weight: 600;
         }
     }
+
+    &.slideshow {
+        clip-path: circle(150% at 0 50%);
+        transition: 2s;
+    }
 }
 
-.slider .slide .slideshow {
-    clip-path: circle(150% at 0 50%);
-    transition: 2s;
-}
+
 
 .slider .slide img {
-    position: absolute;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
+
+
 }
+
+.splide__play {
+    margin-left: 240px;
+    padding: 0.29rem 1.2rem;
+    margin-top: 2px;
+    letter-spacing: 1px;
+    background: rgba(32, 94, 250, 0.7);
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        background: rgba(32, 94, 250, 0.9);
+
+    }
+
+}
+
+.splide__pause {
+    margin-left: 80px;
+    padding: 0.29rem 1rem;
+    letter-spacing: 1px;
+    background: rgba(247, 124, 22, 0.4);
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+        background: rgba(247, 124, 22, 0.9);
+
+    }
+
+}
+
+.splide__progress {
+    background: rgba(0, 0, 0, 0.099);
+}
+
+.splide__pagination {
+    padding: 0.29rem 1.2rem;
+    margin-top: 2px;
+
+}
+
+// @keyframes clipPath {
+//     from {
+//         clip-path: circle(30% at 0 50%);
+
+
+//     }
+
+//     to {
+//         clip-path: circle(140% at 0 0%);
+
+//     }
+// }
