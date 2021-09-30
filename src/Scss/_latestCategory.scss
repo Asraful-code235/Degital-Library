@@ -11,64 +11,52 @@
 
     .container {
         display: flex;
-        flex-direction: row wrap;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: flex-start;
-        text-align: center;
+        padding: 20px 10px;
 
-        .latestImage {
-            // border: 1px solid rgba(124, 116, 116, 0.95);
-            width: 40%;
-            padding: 10px 10px 10px 0;
-
-            img {
-                width: 60%;
-                height: 70%;
-                object-fit: center;
-
-            }
-
-
-        }
-
-        .imgInfo {
-            // border: 1px solid rgba(124, 116, 116, 0.95);
-            width: 60%;
+        .Field {
             display: flex;
             flex-direction: column;
-            text-align: end;
-            align-items: flex-end;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: center;
 
-            .mainInfo {
-                h1 {
-                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-                    font-weight: 700;
-                    font-size: 1.5rem;
-                    color: coral;
-                }
-            }
-
-            .content-info {
+            label {
+                color: rgba(0, 0, 0, 0.75);
+                font-weight: 600;
                 font-size: 1rem;
-                font-weight: 400;
-
-                .span {
-                    color: rgba(139, 15, 15, 0.5);
-                }
-
-                ul li {
-                    color: rgba(37, 130, 173, 0.8);
-                }
-
 
             }
 
+            input {
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -ms-border-radius: 3px;
+                -o-border-radius: 3px;
+                padding: 9px 14px;
+                border-color: coral;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 6px;
+            }
         }
     }
 
-}
+    .submit {
+        width: 195px;
+        margin-top: 6px;
+        padding: 9px 14px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border: none;
+        background: coral;
+        color: #fff;
+    }
 
-.row {
-    display: flex;
-    flex-direction: column;
 }
