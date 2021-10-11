@@ -11,6 +11,7 @@ function ItemsShow() {
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
+      // console.log(response.data);
     });
   };
   const [newTitle, setNewTitle] = useState("");
@@ -67,6 +68,8 @@ function ItemsShow() {
                   title: val.title,
                   author: val.author,
                   price: val.newPrice,
+                  category: val.category,
+                  date: val.date,
                 }
               : val;
           })
@@ -101,9 +104,10 @@ function ItemsShow() {
       <div className="GridContainer">
         {bookList.map((val) => {
           return (
-            <div className="containerBooks">
+            <div className="containerBooks" key={val.id}>
               <h1>{val.Title}</h1>
               <p>Author:{val.Author}</p>
+              <p>Category:{val.Category}</p>
               <h4>Price:{val.Price}$</h4>
               <div className="btn_container">
                 <div className="btn">

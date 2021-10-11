@@ -25,7 +25,21 @@
             align-items: flex-start;
             text-align: center;
 
+            >form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                text-align: center;
+                width: 100%;
 
+
+                >input {
+                    border: 2px solid coral;
+                    padding: 5px 0px;
+                    outline: none;
+                }
+            }
 
 
             label {

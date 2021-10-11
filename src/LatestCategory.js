@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import { render } from "@testing-library/react";
 
 const latestitem = [
   {
@@ -18,13 +19,14 @@ function LatestCategory() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("");
   const [bookList, setBookList] = useState([]);
-
   const addBooks = () => {
     axios
       .post("http://localhost:3001/create", {
         title: title,
         author: author,
+        category: category,
         price: price,
       })
       .then(() => {
@@ -36,6 +38,16 @@ function LatestCategory() {
       setBookList(response.data);
       console.log(response);
     });
+  };
+  const [name, setName] = useState();
+  const [file, setFile] = useState();
+  const send = (event) => {
+    const data = new FormData();
+    data.append("file", file);
+    axios
+      .post("http://localhost:3000/upload", data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   return (
     <>
@@ -73,11 +85,11 @@ function LatestCategory() {
               id=""
               placeholder="Enter category"
               onChange={(event) => {
-                setAuthor(event.target.value);
+                setCategory(event.target.value);
               }}
             />
           </p>
-          <p className="Field">
+          {/* <p className="Field">
             <label htmlFor="">Date</label>
             <input
               type="datetime-local"
@@ -88,8 +100,8 @@ function LatestCategory() {
                 setAuthor(event.target.value);
               }}
             />
-          </p>
-          <p className="Field dateTime">
+          </p> */}
+          <p className="Field ">
             <label htmlFor="">Price</label>
             <input
               type="number"
@@ -101,6 +113,22 @@ function LatestCategory() {
               }}
             />
           </p>
+          <form action="#" className="Field">
+            <label htmlFor="">Image</label>
+            <input
+              type="file"
+              name="image"
+              id="name"
+              onChange={(event) => {
+                const file = event.target.files[0];
+                setFile(file);
+              }}
+            />
+            <button type="submit" onClick={send}>
+              click
+            </button>
+          </form>
+
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>

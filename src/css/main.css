@@ -708,6 +708,21 @@ img {
   text-align: center;
 }
 
+.latestCategory .container .Field > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  width: 100%;
+}
+
+.latestCategory .container .Field > form > input {
+  border: 2px solid coral;
+  padding: 5px 0px;
+  outline: none;
+}
+
 .latestCategory .container .Field label {
   color: rgba(0, 0, 0, 0.75);
   font-weight: 600;
