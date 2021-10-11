@@ -66,6 +66,30 @@ function LatestCategory() {
             />
           </p>
           <p className="Field">
+            <label htmlFor="">Category</label>
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Enter category"
+              onChange={(event) => {
+                setAuthor(event.target.value);
+              }}
+            />
+          </p>
+          <p className="Field">
+            <label htmlFor="">Date</label>
+            <input
+              type="datetime-local"
+              name=""
+              id=""
+              placeholder="Enter time"
+              onChange={(event) => {
+                setAuthor(event.target.value);
+              }}
+            />
+          </p>
+          <p className="Field dateTime">
             <label htmlFor="">Price</label>
             <input
               type="number"
@@ -80,20 +104,20 @@ function LatestCategory() {
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>
-          <div>
+          {/* <div>
             <button type="submit" className="show" onClick={getBooks}>
               Show
             </button>
             {bookList.map((val) => {
               return (
-                <section>
+                <div className="containerBooks">
                   <h1>{val.Title}</h1>
-                  <h2>{val.Author}</h2>
-                  <h2>{val.Price}</h2>
-                </section>
+                  <p>{val.Author}</p>
+                  <h4>{val.Price}</h4>
+                </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </section>
     </>

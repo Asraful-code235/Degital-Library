@@ -40,6 +40,68 @@ app.get("/books", (req, res) => {
     }
   });
 });
+
+//updating database
+app.put("/update", (req, res) => {
+  const id = req.body.id;
+  const title = req.body.title;
+
+  db.query(
+    "UPDATE books SET title = ? WHERE id= ?",
+    [title, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+app.put("/author", (req, res) => {
+  const id = req.body.id;
+  const author = req.body.author;
+  db.query(
+    "UPDATE books SET author= ? WHERE id= ?",
+    [author, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+app.put("/price", (req, res) => {
+  const id = req.body.id;
+  const price = req.body.price;
+  db.query(
+    "UPDATE books SET price= ? WHERE id= ?",
+    [price, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+//deleting from database
+
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM books WHERE id=?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
   console.log("works server running 3001");
 });

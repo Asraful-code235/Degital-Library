@@ -11,6 +11,7 @@ function Hero() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
+
   return (
     <section className="hero">
       <div data-aos="fade-up" className="first-screen">
