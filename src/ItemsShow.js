@@ -27,6 +27,7 @@ function ItemsShow() {
                   title: val.newTitle,
                   author: val.author,
                   price: val.price,
+                  category: val.category,
                 }
               : val;
           })
@@ -47,6 +48,7 @@ function ItemsShow() {
                   title: val.title,
                   author: val.newAuthor,
                   price: val.price,
+                  category: val.category,
                 }
               : val;
           })
@@ -68,7 +70,7 @@ function ItemsShow() {
                   author: val.author,
                   price: val.newPrice,
                   category: val.category,
-                  date: val.date,
+                  image: val.image,
                 }
               : val;
           })
@@ -96,54 +98,58 @@ function ItemsShow() {
         {bookList.map((val) => {
           return (
             <div className="containerBooks" key={val.id}>
-              <div className="imgContainer"></div>
-              <h1>{val.Title}</h1>
-              <p>Author:{val.Author}</p>
-              <p>Category:{val.Category}</p>
-              <h4>Price:{val.Price}$</h4>
-              <div className="btn_container">
-                <div className="btn">
-                  <input
-                    type="text"
-                    placeholder="New title"
-                    onChange={(event) => {
-                      setNewTitle(event.target.value);
-                    }}
-                  />
+              <div className="imgContainer">
+                <img src={`http://localhost:3001/public/images/${val.image}`} />
+              </div>
+              <div className="info">
+                <h1>{val.Title}</h1>
+                <p>Author:{val.Author}</p>
+                <p>Category:{val.Category}</p>
+                <h4>Price:{val.Price}$</h4>
+                <div className="btn_container">
+                  <div className="btn">
+                    <input
+                      type="text"
+                      placeholder="New title"
+                      onChange={(event) => {
+                        setNewTitle(event.target.value);
+                      }}
+                    />
+                    <button
+                      onClick={() => {
+                        updateBooks(val.id);
+                      }}
+                    >
+                      update
+                    </button>
+                  </div>
+                  <div className="btn">
+                    <input
+                      type="text"
+                      placeholder="New Author "
+                      onChange={(event) => {
+                        setNewAuthor(event.target.value);
+                      }}
+                    />
+                    <button onClick={() => updateAuthor(val.id)}>update</button>
+                  </div>
+                  <div className="btn">
+                    <input
+                      type="number"
+                      placeholder="New Price "
+                      onChange={(event) => {
+                        setNewPrice(event.target.value);
+                      }}
+                    />
+                    <button onClick={() => updatePrice(val.id)}>update</button>
+                  </div>
                   <button
-                    onClick={() => {
-                      updateBooks(val.id);
-                    }}
+                    className="btnDelete"
+                    onClick={() => deleteBooks(val.id)}
                   >
-                    update
+                    <AiFillDelete color="white" fontSize="1.5em" />
                   </button>
                 </div>
-                <div className="btn">
-                  <input
-                    type="text"
-                    placeholder="New Author "
-                    onChange={(event) => {
-                      setNewAuthor(event.target.value);
-                    }}
-                  />
-                  <button onClick={() => updateAuthor(val.id)}>update</button>
-                </div>
-                <div className="btn">
-                  <input
-                    type="number"
-                    placeholder="New Price "
-                    onChange={(event) => {
-                      setNewPrice(event.target.value);
-                    }}
-                  />
-                  <button onClick={() => updatePrice(val.id)}>update</button>
-                </div>
-                <button
-                  className="btnDelete"
-                  onClick={() => deleteBooks(val.id)}
-                >
-                  <AiFillDelete color="white" fontSize="1.5em" />
-                </button>
               </div>
             </div>
           );
