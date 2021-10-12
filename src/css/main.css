@@ -830,6 +830,23 @@ img {
   -o-border-radius: 5px;
 }
 
+.ImageGrid .GridContainer .containerBooks .imgContainer {
+  margin-bottom: 2px;
+  border-bottom: 1px solid #686666;
+  width: 100%;
+}
+
+.ImageGrid .GridContainer .containerBooks .imgContainer img {
+  width: 240px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
 .ImageGrid .GridContainer .containerBooks h1 {
   font-size: 1.1rem;
   font-weight: 600;
