@@ -8,26 +8,27 @@ const util = require("util");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("../public/images"));
+// app.use(express.static("../public/images"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null, Date.now() + "_" + file.originalname);
   },
 });
+var upload = multer({ storage: storage });
 
-const upload = multer({ storage }).single("file");
-app.post("/upload", (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).send(req.file);
-  });
-});
+// const upload = multer({ storage }).single("file");
+// app.post("/upload", (req, res) => {
+//   upload(req, res, (err) => {
+//     if (err) {
+//       return res.status(500).json(err);
+//     }
+//     return res.status(200).send(req.file);
+//   });
+// });
 
 const db = mysql.createConnection({
   user: "root",
@@ -41,16 +42,15 @@ db.connect(function (err) {
   }
   console.log("connected");
 });
-
-app.post("/create", (req, res) => {
+app.post("/create", upload.single("myfile"), (req, res) => {
   const title = req.body.title;
   const author = req.body.author;
   const category = req.body.category;
   const price = req.body.price;
-  // const image = req.file.filename;
+  const image = req.file.filename;
   db.query(
-    "INSERT INTO books (title, author,category, price) VALUES(?,?,?,?)",
-    [title, author, category, price],
+    "INSERT INTO books (title, author,category, price,image) VALUES(?,?,?,?,?)",
+    [title, author, category, price, image],
     (err, result) => {
       if (err) {
         console.log(err);

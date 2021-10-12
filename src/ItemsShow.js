@@ -11,7 +11,6 @@ function ItemsShow() {
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
-      console.log(response.data);
     });
   };
   const [newTitle, setNewTitle] = useState("");
@@ -90,13 +89,7 @@ function ItemsShow() {
       <div className="control">
         <ul>
           <li>All</li>
-          <li
-            onClick={(event) => {
-              setLatest(bookList.filter((e) => {}));
-            }}
-          >
-            Latest
-          </li>
+          <li>Latest</li>
         </ul>
       </div>
       <div className="GridContainer">

@@ -13,32 +13,31 @@ function LatestCategory() {
   const [bookList, setBookList] = useState([]);
 
   const addBooks = () => {
-    axios
-      .post(
-        "http://localhost:3001/create",
-        {
-          title: title,
-          author: author,
-          category: category,
-          price: price,
-          image: data,
-        },
-        {
-          Headers: { "Content-Type": "multipart/form-data" },
-        }
-      )
-      .then((res) => {
-        console.log("success");
-      });
+    const formdata = new FormData();
+    formdata.append("myfile", input.profilePic, input.profilePic.name);
+    formdata.append("title", title);
+    formdata.append("author", author);
+    formdata.append("category", category);
+    formdata.append("price", price);
+    axios.post("http://localhost:3001/create", formdata).then((res) => {
+      console.log("success");
+    });
+    // .post("http://localhost:3001/create", {
+    //   title: title,
+    //   author: author,
+    //   category: category,
+    //   price: price,
+    //   formdata,
+    // })
   };
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
-      console.log(response);
     });
   };
-  const imageUpload = () => {
-    console.log("imag uploaded");
+  const [input, setInput] = useState({ profilePic: "" });
+  const imageUpload = (e) => {
+    setInput({ ...input, profilePic: e.target.files[0] });
   };
 
   return (
@@ -115,18 +114,11 @@ function LatestCategory() {
               onChange={imageUpload}
             />
           </div>
-          <div>
-            <label htmlFor="">Image</label>
-            <input type="file" name="image" id="name" />
-          </div>
 
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>
           <div>
-            <button type="submit" className="show" onClick={getBooks}>
-              Show
-            </button>
             {bookList.map((val) => {
               return (
                 <div className="containerBooks">
