@@ -11,7 +11,7 @@ function ItemsShow() {
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
-      // console.log(response.data);
+      console.log(response.data);
     });
   };
   const [newTitle, setNewTitle] = useState("");
@@ -85,8 +85,6 @@ function ItemsShow() {
       );
     });
   };
-  const [latest, setLatest] = useState("");
-
   return (
     <section data-aos="fade-up" className="ImageGrid" onMouseEnter={getBooks}>
       <div className="control">
@@ -105,6 +103,7 @@ function ItemsShow() {
         {bookList.map((val) => {
           return (
             <div className="containerBooks" key={val.id}>
+              <div className="imgContainer"></div>
               <h1>{val.Title}</h1>
               <p>Author:{val.Author}</p>
               <p>Category:{val.Category}</p>

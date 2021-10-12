@@ -4,17 +4,31 @@ const mysql = require("mysql");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const { response } = require("express");
-const { default: axios } = require("axios");
-const router = express.Router();
+const util = require("util");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("./src"));
-const upload = multer();
-app.post("/upload", upload.single("file"), function (req, res, next) {
-  console.log(req.file);
+app.use(express.static("../public/images"));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
+
+const upload = multer({ storage }).single("file");
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
+
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -33,6 +47,7 @@ app.post("/create", (req, res) => {
   const author = req.body.author;
   const category = req.body.category;
   const price = req.body.price;
+  // const image = req.file.filename;
   db.query(
     "INSERT INTO books (title, author,category, price) VALUES(?,?,?,?)",
     [title, author, category, price],

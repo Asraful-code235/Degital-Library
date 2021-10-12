@@ -2,16 +2,6 @@ import React, { useState, useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
-import { render } from "@testing-library/react";
-
-const latestitem = [
-  {
-    id: 1,
-    src: "https://images-na.ssl-images-amazon.com/images/I/81MgsNre3IL._AC_UL200_SR200,200_.jpg",
-    info: "Authors name",
-  },
-];
-
 function LatestCategory() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -21,15 +11,23 @@ function LatestCategory() {
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [bookList, setBookList] = useState([]);
+
   const addBooks = () => {
     axios
-      .post("http://localhost:3001/create", {
-        title: title,
-        author: author,
-        category: category,
-        price: price,
-      })
-      .then(() => {
+      .post(
+        "http://localhost:3001/create",
+        {
+          title: title,
+          author: author,
+          category: category,
+          price: price,
+          image: data,
+        },
+        {
+          Headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
+      .then((res) => {
         console.log("success");
       });
   };
@@ -39,16 +37,10 @@ function LatestCategory() {
       console.log(response);
     });
   };
-  const [name, setName] = useState();
-  const [file, setFile] = useState();
-  const send = (event) => {
-    const data = new FormData();
-    data.append("file", file);
-    axios
-      .post("http://localhost:3000/upload", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const imageUpload = () => {
+    console.log("imag uploaded");
   };
+
   return (
     <>
       <section data-aos="fade-up" className="latestCategory">
@@ -113,26 +105,25 @@ function LatestCategory() {
               }}
             />
           </p>
-          <form action="#" className="Field">
+          <div>
             <label htmlFor="">Image</label>
             <input
               type="file"
-              name="image"
+              name="myfile"
               id="name"
-              onChange={(event) => {
-                const file = event.target.files[0];
-                setFile(file);
-              }}
+              autoComplete="off"
+              onChange={imageUpload}
             />
-            <button type="submit" onClick={send}>
-              click
-            </button>
-          </form>
+          </div>
+          <div>
+            <label htmlFor="">Image</label>
+            <input type="file" name="image" id="name" />
+          </div>
 
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>
-          {/* <div>
+          <div>
             <button type="submit" className="show" onClick={getBooks}>
               Show
             </button>
@@ -145,7 +136,7 @@ function LatestCategory() {
                 </div>
               );
             })}
-          </div> */}
+          </div>
         </div>
       </section>
     </>
