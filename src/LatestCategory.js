@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useForm } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import { json } from "stream/consumers";
 function LatestCategory() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -19,17 +20,14 @@ function LatestCategory() {
     formdata.append("author", author);
     formdata.append("category", category);
     formdata.append("price", price);
+    // formdata.append("mypdf", file.pdf, file.pdf.name);
+
     axios.post("http://localhost:3001/create", formdata).then((res) => {
       console.log("success");
+      console.log(formdata.data);
     });
-    // .post("http://localhost:3001/create", {
-    //   title: title,
-    //   author: author,
-    //   category: category,
-    //   price: price,
-    //   formdata,
-    // })
   };
+
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
@@ -38,6 +36,23 @@ function LatestCategory() {
   const [input, setInput] = useState({ profilePic: "" });
   const imageUpload = (e) => {
     setInput({ ...input, profilePic: e.target.files[0] });
+  };
+  const [newFile, setFile] = useState({ profilePdf: "" });
+  const pdfUpload = (e) => {
+    setFile({ ...newFile, pdf: e.target.files[0] });
+    console.log(e.target.files[0]);
+  };
+  const { register, handelSubmit } = useForm();
+  const onsubmit = (data) => {
+    const formData = new FormData();
+    formdata.append("myPdf", data.myPdf[0]);
+    const res = await fetch("http://localhost:3001/post", {
+      method: "POST",
+      body: formData,
+    }).then((res) => {
+      res.json();
+      alert(JSON.stringify(res));
+    });
   };
 
   return (
@@ -112,7 +127,21 @@ function LatestCategory() {
               id="name"
               autoComplete="off"
               onChange={imageUpload}
+              required
+              multiple
             />
+          </div>
+          <div>
+            <form onSubmit={handelSubmit(onsubmit)}>
+              <label htmlFor="">Pdf</label>
+              <input
+                ref={register}
+                type="file"
+                name="myPdf"
+                autoComplete="off"
+              />
+              <button>submit</button>
+            </form>
           </div>
 
           <button type="submit" className="submit" onClick={addBooks}>

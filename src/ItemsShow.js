@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { FaFileDownload } from "react-icons/fa";
+import { MdUpdate } from "react-icons/md";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
@@ -11,6 +13,8 @@ function ItemsShow() {
   const getBooks = () => {
     axios.get("http://localhost:3001/books").then((response) => {
       setBookList(response.data);
+
+      // console.log("blocked");
     });
   };
   const [newTitle, setNewTitle] = useState("");
@@ -86,6 +90,45 @@ function ItemsShow() {
       );
     });
   };
+  const [newImage, setNewImage] = useState("");
+  const updateImage = (id) => {
+    axios
+      .put("http://localhost:3001/image", { image: newImage, id: id })
+      .then((response) => {
+        alert("updating please wait for sometime !");
+        setNewImage(
+          bookList.map((val) => {
+            return val.id == id
+              ? {
+                  id: val.id,
+                  title: val.title,
+                  author: val.author,
+                  price: val.Price,
+                  category: val.category,
+                  image: val.newImage,
+                }
+              : val;
+          })
+        );
+      });
+  };
+  // const handelDownload = (id) => {
+  //   axios
+  //     .get({
+  //       url: "http://localhost:3001/public/images",
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+  //       // var fileLink = document.createElement("a");
+
+  //       // fileLink.href = fileURL;
+  //       // fileLink.setAttribute("download", "file.pdf");
+  //       // document.body.appendChild(fileLink);
+  //       // fileLink.click();
+  //     });
+  // };
+
   return (
     <section data-aos="fade-up" className="ImageGrid" onMouseEnter={getBooks}>
       <div className="control">
@@ -120,7 +163,7 @@ function ItemsShow() {
                         updateBooks(val.id);
                       }}
                     >
-                      update
+                      <MdUpdate color="white" fontSize="1.5em" />
                     </button>
                   </div>
                   <div className="btn">
@@ -131,7 +174,9 @@ function ItemsShow() {
                         setNewAuthor(event.target.value);
                       }}
                     />
-                    <button onClick={() => updateAuthor(val.id)}>update</button>
+                    <button onClick={() => updateAuthor(val.id)}>
+                      <MdUpdate color="white" fontSize="1.5em" />
+                    </button>
                   </div>
                   <div className="btn">
                     <input
@@ -141,14 +186,37 @@ function ItemsShow() {
                         setNewPrice(event.target.value);
                       }}
                     />
-                    <button onClick={() => updatePrice(val.id)}>update</button>
+                    <button onClick={() => updatePrice(val.id)}>
+                      <MdUpdate color="white" fontSize="1.5em" />
+                    </button>
                   </div>
-                  <button
-                    className="btnDelete"
-                    onClick={() => deleteBooks(val.id)}
-                  >
-                    <AiFillDelete color="white" fontSize="1.5em" />
-                  </button>
+                  <div>
+                    <label htmlFor="">pdf</label>
+                    <input
+                      type="file"
+                      name="myfile"
+                      id="name"
+                      autoComplete="off"
+                      onChange={(event) => {
+                        setNewImage(event.target.files[0]);
+                      }}
+                    />
+                    <button onClick={() => updateImage(val.id)}>Update</button>
+                  </div>
+                  <div className="btnControl">
+                    <button
+                      className="btnDelete"
+                      onClick={() => deleteBooks(val.id)}
+                    >
+                      <AiFillDelete color="white" fontSize="1.5em" />
+                    </button>
+                    <button
+                      className="btnDownload"
+                      onClick={() => deleteBooks(val.id)}
+                    >
+                      <FaFileDownload color="#fff" fontSize="1.5em" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
