@@ -150,7 +150,7 @@ function ItemsShow() {
                 <p>Category:{val.Category}</p>
                 <h4>Price:{val.Price}$</h4>
                 <div className="btn_container">
-                  <div className="btn">
+                  {/* <div className="btn">
                     <input
                       type="text"
                       placeholder="New title"
@@ -189,8 +189,8 @@ function ItemsShow() {
                     <button onClick={() => updatePrice(val.id)}>
                       <MdUpdate color="white" fontSize="1.5em" />
                     </button>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <label htmlFor="">pdf</label>
                     <input
                       type="file"
@@ -202,7 +202,7 @@ function ItemsShow() {
                       }}
                     />
                     <button onClick={() => updateImage(val.id)}>Update</button>
-                  </div>
+                  </div> */}
                   <div className="btnControl">
                     <button
                       className="btnDelete"

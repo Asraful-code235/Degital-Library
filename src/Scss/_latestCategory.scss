@@ -1,13 +1,15 @@
 .latestCategory {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 40px;
     background: #fff;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    // border: 2px solid red;
+    margin-left: 20px;
 
     .container {
         display: flex;
@@ -15,7 +17,7 @@
         justify-content: space-between;
         padding: 20px 10px;
 
-        width: 30%;
+        width: 100%;
 
 
         .Field {
@@ -24,6 +26,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             text-align: center;
+
 
             >form {
                 display: flex;
@@ -57,7 +60,7 @@
                 -o-border-radius: 3px;
                 padding: 9px 14px;
                 border-color: coral;
-                width: 75%;
+                width: 100%;
             }
 
             &:not(:last-child) {
@@ -67,7 +70,7 @@
     }
 
     .submit {
-        width: 195px;
+        // width: 195px;
         margin-top: 6px;
         padding: 9px 14px;
         border-radius: 3px;
@@ -78,7 +81,48 @@
         border: none;
         background: coral;
         color: #fff;
-        width: 75%;
+        width: 100%;
+    }
+
+    .Dashboard_crud {
+        display: flex;
+        flex-direction: column;
+        padding: 4px 0;
+
+        >label {
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: 600;
+            font-size: 1rem;
+            ;
+        }
+
+        >input {
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            padding: 9px 14px;
+            border-color: coral;
+            width: 100%;
+            border: 2px solid coral;
+        }
+
+        .submit {
+            // width: 195px;
+            margin-top: 6px;
+            padding: 9px 14px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            // border: none;
+            background: coral;
+            color: #fff;
+            width: 100%;
+
+        }
     }
 
 }

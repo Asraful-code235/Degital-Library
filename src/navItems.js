@@ -7,13 +7,13 @@ export const items = [
   },
   {
     id: 2,
-    title: "Services",
+    title: "About",
     url: "#",
     cName: "nav-links",
   },
   {
     id: 3,
-    title: "Products",
+    title: "Dashboard",
     url: "#",
     cName: "nav-links",
   },

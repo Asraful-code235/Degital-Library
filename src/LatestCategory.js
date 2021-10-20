@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useForm } from "react";
+import React, { useState, useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
-import { json } from "stream/consumers";
+
 function LatestCategory() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -14,17 +14,20 @@ function LatestCategory() {
   const [bookList, setBookList] = useState([]);
 
   const addBooks = () => {
+    // console.log(input.profilePic, "==", input.profilePic.name);
     const formdata = new FormData();
-    formdata.append("myfile", input.profilePic, input.profilePic.name);
     formdata.append("title", title);
     formdata.append("author", author);
     formdata.append("category", category);
     formdata.append("price", price);
+    formdata.append("myfile", input.profilePic, input.profilePic.name);
+
     // formdata.append("mypdf", file.pdf, file.pdf.name);
+    console.log(formdata);
 
     axios.post("http://localhost:3001/create", formdata).then((res) => {
       console.log("success");
-      console.log(formdata.data);
+      // console.log(formdata.data);
     });
   };
 
@@ -35,25 +38,26 @@ function LatestCategory() {
   };
   const [input, setInput] = useState({ profilePic: "" });
   const imageUpload = (e) => {
+    console.log(e.target.files[0]);
     setInput({ ...input, profilePic: e.target.files[0] });
   };
-  const [newFile, setFile] = useState({ profilePdf: "" });
-  const pdfUpload = (e) => {
-    setFile({ ...newFile, pdf: e.target.files[0] });
-    console.log(e.target.files[0]);
-  };
-  const { register, handelSubmit } = useForm();
-  const onsubmit = (data) => {
-    const formData = new FormData();
-    formdata.append("myPdf", data.myPdf[0]);
-    const res = await fetch("http://localhost:3001/post", {
-      method: "POST",
-      body: formData,
-    }).then((res) => {
-      res.json();
-      alert(JSON.stringify(res));
-    });
-  };
+  // const [newFile, setFile] = useState({ profilePdf: "" });
+  // const pdfUpload = (e) => {
+  //   setFile({ ...newFile, pdf: e.target.files[0] });
+  //   console.log(e.target.files[0]);
+  // };
+  // const [register, handelSubmit] = useState();
+  // const onsubmit = (data) => {
+  //   const formData = new FormData();
+  //   formData.append("myPdf", data.myPdf[0]);
+  //   const res = fetch("http://localhost:3001/post", {
+  //     method: "POST",
+  //     body: formData,
+  //   }).then((res) => {
+  //     res.json();
+  //     alert(JSON.stringify(res));
+  //   });
+  // };
 
   return (
     <>
@@ -119,7 +123,7 @@ function LatestCategory() {
               }}
             />
           </p>
-          <div>
+          <div className="Dashboard_crud">
             <label htmlFor="">Image</label>
             <input
               type="file"
@@ -127,27 +131,20 @@ function LatestCategory() {
               id="name"
               autoComplete="off"
               onChange={imageUpload}
-              required
-              multiple
             />
           </div>
-          <div>
-            <form onSubmit={handelSubmit(onsubmit)}>
+          <div className="Dashboard_crud">
+            <form className="Dashboard_crud">
               <label htmlFor="">Pdf</label>
-              <input
-                ref={register}
-                type="file"
-                name="myPdf"
-                autoComplete="off"
-              />
-              <button>submit</button>
+              <input type="file" name="myPdf" autoComplete="off" />
+              <button className="submit">Pdf Submit</button>
             </form>
           </div>
 
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>
-          <div>
+          {/* <div>
             {bookList.map((val) => {
               return (
                 <div className="containerBooks">
@@ -157,7 +154,7 @@ function LatestCategory() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </section>
     </>

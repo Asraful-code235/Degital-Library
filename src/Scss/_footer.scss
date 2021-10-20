@@ -1,0 +1,56 @@
+.Footer-container {
+    background-color: rgba(0, 0, 0, 0.85);
+    margin-top: 80px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    color: #fff;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+
+    .Footer-info {
+        margin-left: 60px;
+
+        ul {
+            border: 0.2px solid #fff;
+
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            align-items: flex-start;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+            background: rgba(0, 0, 0, 0.25);
+
+            li {
+                padding: 5px;
+            }
+        }
+    }
+
+    .licence {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-left: 80px;
+
+        .icons-container {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .facebook-icon,
+        .linkedin-icon,
+        .twitter-icon {
+            padding: 10px;
+        }
+    }
+}

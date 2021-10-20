@@ -11,13 +11,13 @@ app.use(cors());
 app.use(express.json());
 app.use("/public", express.static("public"));
 app.use("/public/images", express.static("public/images"));
-app.use(
-  fileUpload({
-    createParentPath: true,
-  })
-);
-app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));
+// app.use(
+//   fileUpload({
+//     createParentPath: true,
+//   })
+// );
+// app.use(morgan("dev"));
+// app.use(express.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === "myfile") cb(null, "public/images");
@@ -54,15 +54,14 @@ const fileFilter = (req, file, cb) => {
 };
 var upload = multer({ storage: storage });
 
-// const upload = multer({ storage }).single("file");
-// app.post("/upload", (req, res) => {
-//   upload(req, res, (err) => {
-//     if (err) {
-//       return res.status(500).json(err);
-//     }
-//     return res.status(200).send(req.file);
-//   });
-// });
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
 
 const db = mysql.createConnection({
   user: "root",
@@ -106,25 +105,25 @@ app.post("/create", upload.single("myfile"), (req, res) => {
 //     }
 //   });
 // });
-app.post("/post", async (req, res) => {
-  try {
-    if (!req.files) {
-      res.send({
-        status: false,
-        message: "NO files",
-      });
-    } else {
-      const { myFile } = req.files;
-      myFile.mv("./public" + myFile.name);
-      res.send({
-        status: true,
-        message: "File is uploaded",
-      });
-    }
-  } catch (e) {
-    res.status(500).send(e);
-  }
-});
+// app.post("/post", async (req, res) => {
+//   try {
+//     if (!req.files) {
+//       res.send({
+//         status: false,
+//         message: "NO files",
+//       });
+//     } else {
+//       const { myFile } = req.files;
+//       myFile.mv("./public" + myFile.name);
+//       res.send({
+//         status: true,
+//         message: "File is uploaded",
+//       });
+//     }
+//   } catch (e) {
+//     res.status(500).send(e);
+//   }
+// });
 
 app.get("/books", (req, res) => {
   db.query("SELECT * FROM books", (err, result) => {

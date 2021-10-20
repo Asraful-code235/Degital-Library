@@ -1,5 +1,6 @@
 import React from "react";
 import { items } from "./navItems";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -18,11 +19,15 @@ function Navbar() {
         <ul className="nav-menu">
           {items.map((item) => {
             return (
-              <li key={item.id}>
-                <a className={item.cName} href={item.url}>
-                  {item.title}
-                </a>
-              </li>
+              <div key={item.id}>
+                <Link to={`/${item.title}`}>
+                  <li>
+                    <a className={item.cName} href={item.url}>
+                      {item.title}
+                    </a>
+                  </li>
+                </Link>
+              </div>
             );
           })}
         </ul>
