@@ -40,10 +40,10 @@ function Dashboard() {
 
         {/* <Sidebar /> */}
       </div>
-      <Link to="/Home">
+      <Link to="/">
         <div className="sidebar_link_leave">
           <i className="fa fa-sign-out"></i>
-          <a href="" className="GoHome">
+          <a href="#" className="GoHome">
             Leave
           </a>
         </div>

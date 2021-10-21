@@ -93,7 +93,7 @@
             color: rgba(0, 0, 0, 0.75);
             font-weight: 600;
             font-size: 1rem;
-            ;
+
         }
 
         >input {
@@ -103,9 +103,10 @@
             -ms-border-radius: 3px;
             -o-border-radius: 3px;
             padding: 9px 14px;
-            border-color: coral;
+            // border-color: coral;
             width: 100%;
-            border: 2px solid coral;
+            // border: 2px solid coral;
+            outline: none;
         }
 
         .submit {

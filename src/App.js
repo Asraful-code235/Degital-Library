@@ -13,11 +13,13 @@ function App() {
       <div>
         <Route path="/" exact component={Navbar} />
         <Route path="/" exact component={Hero} />
-        <Route path="/" exact component={LatestCategory} />
+        {/* <Route path="/" exact component={LatestCategory} /> */}
         <Route path="/" exact component={GridShow} />
+        <Route path="/" exact component={Footer} />
+
         <Route path="/Home" exact component={Navbar} />
         <Route path="/Home" exact component={Hero} />
-        <Route path="/Home" exact component={LatestCategory} />
+        {/* <Route path="/Home" exact component={LatestCategory} /> */}
 
         <Route path="/Home" exact component={GridShow} />
 

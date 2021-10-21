@@ -21,6 +21,6 @@ export const items = [
     id: 4,
     title: "sign up",
     url: "#",
-    cName: "nav-links",
+    cName: "nav-links sign-up",
   },
 ];

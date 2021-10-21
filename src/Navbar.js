@@ -7,12 +7,9 @@ function Navbar() {
     <>
       <nav className="NavbarItems">
         <div className="menu-icon">
-          <img
-            src="https://images.vexels.com/media/users/3/216637/raw/5cb9c03787ab7860fdd5dc4d13a72043-digital-library-logo-design.jpg"
-            alt=""
-          />
+          <img src="./women.PNG" alt="" />
           <h1 className="navbar-logo">
-            Digital <span>Library</span>
+            DIGITAL <span>Library</span>
           </h1>
         </div>
 

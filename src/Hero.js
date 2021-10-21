@@ -16,6 +16,9 @@ function Hero() {
     <section className="hero">
       <div data-aos="fade-up" className="first-screen">
         <div className="first-floor">
+          <div className="img-container">
+            <img src="./optimized-11.png" alt="" />
+          </div>
           <div className="col-left">
             <div data-aos="fade-up" className="home-category">
               <Component1 />

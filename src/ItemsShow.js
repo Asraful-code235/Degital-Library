@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { AiTwotoneDelete } from "react-icons/ai";
 import { FaFileDownload } from "react-icons/fa";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { MdUpdate } from "react-icons/md";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -128,13 +129,28 @@ function ItemsShow() {
   //       // fileLink.click();
   //     });
   // };
-
+  const [isActiveDd, setActiveDd] = useState(false);
+  const handelDropdown = () => {
+    setActiveDd(!isActiveDd);
+    console.log("clicked");
+  };
   return (
     <section data-aos="fade-up" className="ImageGrid" onMouseEnter={getBooks}>
       <div className="control">
         <ul>
-          <li>All</li>
+          <li className="all-active">All</li>
           <li>Latest</li>
+          <div className="category-books" onClick={handelDropdown}>
+            <li>Category</li>
+            <div className="img">
+              <IoMdArrowDropdown color="#fff" fontSize="1.2rem" />
+            </div>
+          </div>
+        </ul>
+        <ul className={`category-books-items ${isActiveDd ? "active" : ""}`}>
+          <li>CSE</li>
+          <li>EEE</li>
+          <li>STORY</li>
         </ul>
       </div>
       <div className="GridContainer">
@@ -142,7 +158,13 @@ function ItemsShow() {
           return (
             <div className="containerBooks" key={val.id}>
               <div className="imgContainer">
-                <img src={`http://localhost:3001/public/images/${val.image}`} />
+                <div className="book-grid">
+                  <img
+                    src={`http://localhost:3001/public/images/${val.image}`}
+                  />
+                </div>
+                <div className="shelf-shadows"></div>
+                <div className="shelf"></div>
               </div>
               <div className="info">
                 <h1>{val.Title}</h1>
@@ -204,17 +226,18 @@ function ItemsShow() {
                     <button onClick={() => updateImage(val.id)}>Update</button>
                   </div> */}
                   <div className="btnControl">
-                    <button
+                    {/* <button
                       className="btnDelete"
                       onClick={() => deleteBooks(val.id)}
                     >
-                      <AiFillDelete color="white" fontSize="1.5em" />
-                    </button>
+                      <AiTwotoneDelete color="#fff" fontSize="1.5em" />
+                    </button> */}
                     <button
                       className="btnDownload"
-                      onClick={() => deleteBooks(val.id)}
+                      // onClick={() => deleteBooks(val.id)}
                     >
                       <FaFileDownload color="#fff" fontSize="1.5em" />
+                      Download
                     </button>
                   </div>
                 </div>
